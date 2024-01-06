@@ -2,6 +2,7 @@ import { AdditionLexar } from "./expressions/addition";
 import { DivisionLexar } from "./expressions/division";
 import { MultiplicationLexar } from "./expressions/multiplication";
 import { ParenthesisLexar } from "./expressions/parenthesis";
+import { ReturnExpressionLexar } from "./expressions/return";
 import { SubtractionLexar } from "./expressions/subtraction";
 import { FunctionCallLexar } from "./functions/call";
 import { FunctionDeclarationLexar } from "./functions/declaration";
@@ -22,6 +23,7 @@ import { VariableLexar } from "./variables/read";
 
 const lexars: Lexar<any>[] = [
   VariableDeclarationLexar,
+  ReturnExpressionLexar,
   RecordLexar,
   ParenthesisLexar,
   FunctionCallLexar,
@@ -60,6 +62,7 @@ function startsWithVariableDeclaration(src: string): boolean {
 export function lexar(src: string, c?: Context): LexarResult {
   const context: Context = c ?? {
     heap: {},
+    callStack: [],
   };
 
   let input: string = src.trim();

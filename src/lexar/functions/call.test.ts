@@ -8,6 +8,7 @@ describe("variables", () => {
       )
     ).toEqual({
       context: {
+        callStack: [],
         heap: {
           add: {
             arguments: [
@@ -102,6 +103,7 @@ describe("variables", () => {
       )
     ).toEqual({
       context: {
+        callStack: [],
         heap: {
           add: {
             arguments: [

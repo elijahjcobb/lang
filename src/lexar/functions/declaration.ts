@@ -29,7 +29,10 @@ const functionLexar = (
     argumentStartIndex + 1,
     argumentEndIndex
   );
-  const argNames = argumentString.split(",").map((s) => s.trim());
+  const argNames = argumentString
+    .split(",")
+    .map((s) => s.trim())
+    .filter((s) => s !== "");
 
   const returnTypeStartIndex = statement.indexOf("):");
   const returnTypeEndIndex = statement.indexOf("{");
@@ -61,6 +64,8 @@ const functionLexar = (
   for (const arg of args) {
     newContext.heap[arg.name] = arg;
   }
+
+  newContext.callStack.push({ functionName: name, returnType });
 
   const token: Token = {
     type: "function-declaration",

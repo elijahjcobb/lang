@@ -126,6 +126,7 @@ describe("declaration", () => {
         },
       ],
       context: {
+        callStack: [],
         heap: {
           x: {
             type: "variable-declaration",
@@ -259,6 +260,7 @@ describe("declaration", () => {
         },
       ],
       context: {
+        callStack: [],
         heap: {
           add: {
             type: "function-declaration",
@@ -328,6 +330,7 @@ describe("declaration", () => {
       lexar(`fun add(a: Integer, b: Integer): Void { a + b - 1 * 2389 }`)
     ).toEqual({
       context: {
+        callStack: [],
         heap: {
           add: {
             arguments: [

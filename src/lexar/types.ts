@@ -6,7 +6,8 @@ export type TokenType =
   | "variable"
   | "function-declaration"
   | "argument"
-  | "function-call";
+  | "function-call"
+  | "return-expression";
 
 export interface BaseToken<T extends TokenType> {
   type: T;
@@ -110,6 +111,10 @@ export interface FunctionCall extends BaseToken<"function-call"> {
   arguments: Token[];
 }
 
+export interface ReturnExpression extends BaseToken<"return-expression"> {
+  expression: Token | null;
+}
+
 export type Token =
   | Literal
   | BinaryExpression
@@ -118,15 +123,22 @@ export type Token =
   | VariableDeclaration
   | FunctionDeclaration
   | Argument
-  | FunctionCall;
+  | FunctionCall
+  | ReturnExpression;
 
 export type Heap = Record<
   string,
   VariableDeclaration | FunctionDeclaration | Argument
 >;
 
+export interface CallStackEntry {
+  functionName: string;
+  returnType: SupportedType;
+}
+
 export interface Context {
   heap: Heap;
+  callStack: CallStackEntry[];
 }
 
 export interface Lexar<T extends Token> {
