@@ -1,9 +1,198 @@
 import { lexar } from "..";
+import { Context } from "../types";
+import { FunctionDeclarationLexar } from "./declaration";
 
-describe("variables", () => {
+const CONTEXT = {} as Context;
+
+describe("declaration", () => {
+  const QUICK_TESTS: Record<string, boolean> = {
+    "": false,
+    "'foo'": false,
+    false: false,
+    foo: false,
+    "fun foo() {}": false,
+    "fun foo(): Integer {}": true,
+    "fun foo(a: Integer, b: Integer): Integer {}": true,
+    "fun foo(a: Integer, b: Integer) {}": false,
+    "fun foo(a: Integer, b: Integer): Void {}": true,
+    "fun foo(a, b: Integer): Void {}": false,
+    "fun foo(a, b): Void {}": false,
+    "fun foo(a: I, b): Void {}": false,
+    "fun foo(a: I, c: Int): Void {}": true,
+    "fun _foo(a: I, c: Int): Void {}": false,
+    "fun 3foo(a: I, c: Int): Void {}": false,
+    "fun foo(39d: I, c: Int): Void {}": false,
+    "fun foo(d923: I, c: Int): Void {}": true,
+    "fun foo(d923: I, c32: Int): Void {}": true,
+    "fun foo(d923: I, c32: Int): Void23 {}": true,
+  };
+
+  describe("canLexar", () => {
+    describe("quick tests", () => {
+      for (const [key, value] of Object.entries(QUICK_TESTS)) {
+        it(`should return \`${value}\` for \`${key}\``, () => {
+          expect(FunctionDeclarationLexar.canLexar(key, CONTEXT)).toEqual(
+            value
+          );
+        });
+      }
+    });
+  });
+  it("works with a global variable declaration then a function def, then calling func", () => {
+    expect(
+      lexar(`
+    let x: Integer = 3;
+    fun add(a: Integer, b: Integer): Void {
+      a + b - x * 31
+    }
+    add(1, 2)
+    `)
+    ).toEqual({
+      statements: [
+        {
+          type: "variable-declaration",
+          name: "x",
+          isConstant: true,
+          runtimeType: "Integer",
+          value: {
+            type: "literal",
+            literalType: "integer",
+            value: 3,
+          },
+        },
+        {
+          type: "function-declaration",
+          name: "add",
+          arguments: [
+            {
+              type: "argument",
+              name: "a",
+              runtimeType: "Integer",
+            },
+            {
+              type: "argument",
+              name: "b",
+              runtimeType: "Integer",
+            },
+          ],
+          returnType: "Void",
+          body: [
+            {
+              type: "binary-expression",
+              expression: "multiplication",
+              left: {
+                type: "binary-expression",
+                expression: "addition",
+                left: {
+                  type: "variable",
+                  name: "a",
+                },
+                right: {
+                  type: "binary-expression",
+                  expression: "subtraction",
+                  left: {
+                    type: "variable",
+                    name: "b",
+                  },
+                  right: {
+                    type: "variable",
+                    name: "x",
+                  },
+                },
+              },
+              right: {
+                type: "literal",
+                literalType: "integer",
+                value: 31,
+              },
+            },
+          ],
+        },
+        {
+          type: "function-call",
+          name: "add",
+          arguments: [
+            {
+              type: "literal",
+              literalType: "integer",
+              value: 1,
+            },
+            {
+              type: "literal",
+              literalType: "integer",
+              value: 2,
+            },
+          ],
+        },
+      ],
+      context: {
+        heap: {
+          x: {
+            type: "variable-declaration",
+            name: "x",
+            isConstant: true,
+            runtimeType: "Integer",
+            value: {
+              type: "literal",
+              literalType: "integer",
+              value: 3,
+            },
+          },
+          add: {
+            type: "function-declaration",
+            name: "add",
+            arguments: [
+              {
+                type: "argument",
+                name: "a",
+                runtimeType: "Integer",
+              },
+              {
+                type: "argument",
+                name: "b",
+                runtimeType: "Integer",
+              },
+            ],
+            returnType: "Void",
+            body: [
+              {
+                type: "binary-expression",
+                expression: "multiplication",
+                left: {
+                  type: "binary-expression",
+                  expression: "addition",
+                  left: {
+                    type: "variable",
+                    name: "a",
+                  },
+                  right: {
+                    type: "binary-expression",
+                    expression: "subtraction",
+                    left: {
+                      type: "variable",
+                      name: "b",
+                    },
+                    right: {
+                      type: "variable",
+                      name: "x",
+                    },
+                  },
+                },
+                right: {
+                  type: "literal",
+                  literalType: "integer",
+                  value: 31,
+                },
+              },
+            ],
+          },
+        },
+      },
+    });
+  });
   it("works on normal value", () => {
     expect(
-      lexar(`fun add(a: Integer, b: Integer) { a + b - 1 * 2389 }`)
+      lexar(`fun add(a: Integer, b: Integer): Void { a + b - 1 * 2389 }`)
     ).toEqual({
       context: {
         heap: {
@@ -53,6 +242,7 @@ describe("variables", () => {
               },
             ],
             name: "add",
+            returnType: "Void",
             type: "function-declaration",
           },
         },
@@ -104,6 +294,7 @@ describe("variables", () => {
             },
           ],
           name: "add",
+          returnType: "Void",
           type: "function-declaration",
         },
       ],

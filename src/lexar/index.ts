@@ -10,12 +10,17 @@ import { FloatLexar } from "./literals/float";
 import { IntegerLexar } from "./literals/integer";
 import { RecordLexar } from "./literals/record";
 import { StringLexar } from "./literals/string";
-import type { Context, Lexar, LexarResult, Token } from "./types";
-import { VariableDeclarationLexar } from "./variables/declaration";
+import type {
+  Context,
+  FunctionDeclaration,
+  Lexar,
+  LexarResult,
+  Token,
+} from "./types";
+import { REGEX, VariableDeclarationLexar } from "./variables/declaration";
 import { VariableLexar } from "./variables/read";
 
 const lexars: Lexar<any>[] = [
-  FunctionDeclarationLexar,
   VariableDeclarationLexar,
   RecordLexar,
   ParenthesisLexar,
@@ -47,19 +52,58 @@ export function buildTokenFromStatement(
   throw new Error("Cannot tokenize statement: " + statement);
 }
 
+function startsWithVariableDeclaration(src: string): boolean {
+  const statement = src.trim().replaceAll("\n", "");
+  return REGEX.test(statement);
+}
+
 export function lexar(src: string, c?: Context): LexarResult {
   const context: Context = c ?? {
     heap: {},
   };
 
-  const lines = src.split("\n");
-  const rawStatements = lines.map((line) => line.split(";")).flat();
-  const statements = rawStatements
+  let input: string = src.trim();
+
+  const statements: Token[] = [];
+
+  while (startsWithVariableDeclaration(input)) {
+    const definitions = input.split(";");
+    for (const d of definitions) {
+      const definition = d.trim();
+      if (definition === "") continue;
+      if (!VariableDeclarationLexar.canLexar(definition, context)) {
+        continue;
+      }
+      const { token, statement } = VariableDeclarationLexar.specialLexar(
+        definition,
+        context
+      );
+      input = input.replace(definition, statement.trim());
+      statements.push(token);
+    }
+  }
+
+  while (FunctionDeclarationLexar.canLexar(input, context)) {
+    const { token, statement } = FunctionDeclarationLexar.specialLexar(
+      input,
+      context
+    );
+    input = statement;
+    statements.push(token);
+  }
+
+  const lines = input.split("\n");
+  const rawStatements = lines
+    .map((line) => line.split(";"))
+    .flat()
     .map((statement) => statement.trim())
     .filter((statement) => statement.length > 0)
     .map((s) => buildTokenFromStatement(s, context))
     .filter((t): t is Token => t !== null);
 
-  // console.log(JSON.stringify({ statements, context }, null, 4));
+  statements.push(...rawStatements);
+
+  // console.log(JSON.stringify({ statements, context, src }, null, 4));
+
   return { statements, context };
 }

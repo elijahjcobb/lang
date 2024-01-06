@@ -1,7 +1,7 @@
 import { lexar } from "..";
 
 describe("variables", () => {
-  it("works on normal value", () => {
+  it("works on integer const", () => {
     const { statements, context } = lexar(`let x: Integer = 1;`);
     expect(statements).toEqual([
       {
@@ -30,7 +30,7 @@ describe("variables", () => {
       },
     });
   });
-  it("works on empty string", () => {
+  it("works on string var", () => {
     const { statements, context } = lexar(`var a: String = 'hi'`);
     expect(statements).toEqual([
       {
@@ -64,33 +64,33 @@ describe("variables", () => {
       lexar(`var x: Integer = 1; let a: Integer = 2 + x`).statements
     ).toEqual([
       {
-        isConstant: false,
-        name: "x",
-        runtimeType: "Integer",
         type: "variable-declaration",
+        name: "x",
+        isConstant: false,
+        runtimeType: "Integer",
         value: {
-          literalType: "integer",
           type: "literal",
+          literalType: "integer",
           value: 1,
         },
       },
       {
-        isConstant: true,
-        name: "a",
-        runtimeType: "Integer",
         type: "variable-declaration",
+        name: "a",
+        isConstant: true,
+        runtimeType: "Integer",
         value: {
+          type: "binary-expression",
           expression: "addition",
           left: {
-            literalType: "integer",
             type: "literal",
+            literalType: "integer",
             value: 2,
           },
           right: {
-            name: "x",
             type: "variable",
+            name: "x",
           },
-          type: "binary-expression",
         },
       },
     ]);

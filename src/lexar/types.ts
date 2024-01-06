@@ -28,6 +28,7 @@ export const SUPPORTED_TYPES = [
   "Integer",
   "Float",
   "Record",
+  "Void",
 ] as const;
 
 export type SupportedType = (typeof SUPPORTED_TYPES)[number];
@@ -100,6 +101,7 @@ export interface Argument extends BaseToken<"argument"> {
 export interface FunctionDeclaration extends BaseToken<"function-declaration"> {
   name: string;
   arguments: Argument[];
+  returnType: SupportedType;
   body: Token[];
 }
 

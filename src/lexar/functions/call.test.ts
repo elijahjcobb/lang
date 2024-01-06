@@ -4,7 +4,7 @@ describe("variables", () => {
   it("works on normal value", () => {
     expect(
       lexar(
-        `let y: Integer = 1; fun add(a: Integer, b: Integer) { a + b - 1 * 2389 }; add(1, y)`
+        `let y: Integer = 1; fun add(a: Integer, b: Integer): Void { a + b - 1 * 2389 }; add(1, y)`
       )
     ).toEqual({
       context: {
@@ -37,6 +37,7 @@ describe("variables", () => {
               },
             ],
             name: "add",
+            returnType: "Void",
             type: "function-declaration",
           },
           y: {
@@ -80,6 +81,7 @@ describe("variables", () => {
             },
           ],
           name: "add",
+          returnType: "Void",
           type: "function-declaration",
         },
         {
@@ -96,7 +98,7 @@ describe("variables", () => {
   it("works on normal value", () => {
     expect(
       lexar(
-        `let y: Integer = 1; var z: Integer = 21; fun add(a: Integer, b: Integer) { a + b - 1 * (2389 - z) }; add(1, y)`
+        `let y: Integer = 1; var z: Integer = 21; fun add(a: Integer, b: Integer): Void { a + b - 1 * (2389 - z) }; add(1, y)`
       )
     ).toEqual({
       context: {
@@ -158,6 +160,7 @@ describe("variables", () => {
               },
             ],
             name: "add",
+            returnType: "Void",
             type: "function-declaration",
           },
           y: {
@@ -264,6 +267,7 @@ describe("variables", () => {
             },
           ],
           name: "add",
+          returnType: "Void",
           type: "function-declaration",
         },
         {
