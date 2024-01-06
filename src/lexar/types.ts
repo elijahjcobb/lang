@@ -21,6 +21,15 @@ export interface BaseLiteral<T extends LiteralType, V extends LiteralValueType>
   value: V;
 }
 
+export const SUPPORTED_TYPES = [
+  "String",
+  "Boolean",
+  "Integer",
+  "Float",
+] as const;
+
+export type SupportedType = (typeof SUPPORTED_TYPES)[number];
+
 export type IntegerLiteral = BaseLiteral<"integer", number>;
 export type FloatLiteral = BaseLiteral<"float", number>;
 export type StringLiteral = BaseLiteral<"string", string>;
@@ -74,12 +83,14 @@ export interface Variable extends BaseToken<"variable"> {
 
 export interface VariableDeclaration extends BaseToken<"variable-declaration"> {
   name: string;
+  runtimeType: SupportedType;
   value: Token;
   isConstant: boolean;
 }
 
 export interface Argument extends BaseToken<"argument"> {
   name: string;
+  runtimeType: SupportedType;
 }
 
 export interface FunctionDeclaration extends BaseToken<"function-declaration"> {

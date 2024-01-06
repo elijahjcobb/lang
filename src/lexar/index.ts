@@ -9,7 +9,7 @@ import { BooleanLexar } from "./literals/boolean";
 import { FloatLexar } from "./literals/float";
 import { IntegerLexar } from "./literals/integer";
 import { StringLexar } from "./literals/string";
-import type { Context, Heap, Lexar, LexarResult, Token } from "./types";
+import type { Context, Lexar, LexarResult, Token } from "./types";
 import { VariableDeclarationLexar } from "./variables/declaration";
 import { VariableLexar } from "./variables/read";
 
@@ -58,6 +58,6 @@ export function lexar(src: string, c?: Context): LexarResult {
     .map((s) => buildTokenFromStatement(s, context))
     .filter((t): t is Token => t !== null);
 
-  console.log(JSON.stringify({ statements, context }, null, 4));
+  // console.log(JSON.stringify({ statements, context }, null, 4));
   return { statements, context };
 }

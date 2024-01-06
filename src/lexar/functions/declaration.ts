@@ -1,10 +1,11 @@
 import { lexar } from "..";
-import type {
-  Argument,
-  Context,
-  FunctionDeclaration,
-  Lexar,
-  Token,
+import { isSupportedType } from "../is-supported-type";
+import {
+  type Argument,
+  type Context,
+  type FunctionDeclaration,
+  type Lexar,
+  type Token,
 } from "../types";
 
 export const FunctionDeclarationLexar: Lexar<FunctionDeclaration> = {
@@ -27,10 +28,18 @@ export const FunctionDeclarationLexar: Lexar<FunctionDeclaration> = {
     const bodyEnd = statement.indexOf("}");
     const bodyString = statement.slice(bodyStart + 1, bodyEnd).trim();
 
-    const args: Argument[] = argNames.map((name) => ({
-      type: "argument",
-      name,
-    }));
+    const args: Argument[] = argNames.map((arg) => {
+      const [name, type] = arg.split(":").map((s) => s.trim());
+      if (!name) throw new Error("Argument must have a name");
+      if (!type) throw new Error("Argument must have a type");
+      if (!isSupportedType(type))
+        throw new Error("Argument must have a valid type");
+      return {
+        type: "argument",
+        name,
+        runtimeType: type,
+      };
+    });
 
     const newContext: Context = JSON.parse(JSON.stringify(context));
 
@@ -47,12 +56,7 @@ export const FunctionDeclarationLexar: Lexar<FunctionDeclaration> = {
 
     context.heap[name] = token;
     newContext.heap[name] = token;
-
-    return {
-      type: "function-declaration",
-      name,
-      arguments: args,
-      body: lexar(bodyString, newContext).statements,
-    };
+    token.body = lexar(bodyString, newContext).statements;
+    return token;
   },
 };

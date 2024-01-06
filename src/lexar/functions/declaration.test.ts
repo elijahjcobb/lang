@@ -2,7 +2,9 @@ import { lexar } from "..";
 
 describe("variables", () => {
   it("works on normal value", () => {
-    expect(lexar(`fun add(a, b) { a + b - 1 * 2389 }`)).toEqual({
+    expect(
+      lexar(`fun add(a: Integer, b: Integer) { a + b - 1 * 2389 }`)
+    ).toEqual({
       context: {
         heap: {
           add: {
@@ -10,10 +12,12 @@ describe("variables", () => {
               {
                 name: "a",
                 type: "argument",
+                runtimeType: "Integer",
               },
               {
                 name: "b",
                 type: "argument",
+                runtimeType: "Integer",
               },
             ],
             body: [
@@ -59,9 +63,11 @@ describe("variables", () => {
             {
               name: "a",
               type: "argument",
+              runtimeType: "Integer",
             },
             {
               name: "b",
+              runtimeType: "Integer",
               type: "argument",
             },
           ],

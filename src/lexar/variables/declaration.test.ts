@@ -2,11 +2,12 @@ import { lexar } from "..";
 
 describe("variables", () => {
   it("works on normal value", () => {
-    const { statements, context } = lexar(`let x = 1;`);
+    const { statements, context } = lexar(`let x: Integer = 1;`);
     expect(statements).toEqual([
       {
         type: "variable-declaration",
         name: "x",
+        runtimeType: "Integer",
         isConstant: true,
         value: {
           type: "literal",
@@ -19,6 +20,7 @@ describe("variables", () => {
       x: {
         isConstant: true,
         name: "x",
+        runtimeType: "Integer",
         type: "variable-declaration",
         value: {
           literalType: "integer",
@@ -29,11 +31,12 @@ describe("variables", () => {
     });
   });
   it("works on empty string", () => {
-    const { statements, context } = lexar(`var a = 'hi'`);
+    const { statements, context } = lexar(`var a: String = 'hi'`);
     expect(statements).toEqual([
       {
         type: "variable-declaration",
         name: "a",
+        runtimeType: "String",
         isConstant: false,
         value: {
           type: "literal",
@@ -46,6 +49,7 @@ describe("variables", () => {
       a: {
         type: "variable-declaration",
         name: "a",
+        runtimeType: "String",
         isConstant: false,
         value: {
           type: "literal",
@@ -56,10 +60,13 @@ describe("variables", () => {
     });
   });
   it("can be read", () => {
-    expect(lexar(`var x = 1; let a = 2 + x`).statements).toEqual([
+    expect(
+      lexar(`var x: Integer = 1; let a: Integer = 2 + x`).statements
+    ).toEqual([
       {
         isConstant: false,
         name: "x",
+        runtimeType: "Integer",
         type: "variable-declaration",
         value: {
           literalType: "integer",
@@ -70,6 +77,7 @@ describe("variables", () => {
       {
         isConstant: true,
         name: "a",
+        runtimeType: "Integer",
         type: "variable-declaration",
         value: {
           expression: "addition",
