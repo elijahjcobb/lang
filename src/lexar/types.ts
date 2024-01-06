@@ -3,7 +3,10 @@ export type TokenType =
   | "binary-expression"
   | "parenthesized-expression"
   | "variable-declaration"
-  | "variable";
+  | "variable"
+  | "function-declaration"
+  | "argument"
+  | "function-call";
 
 export interface BaseToken<T extends TokenType> {
   type: T;
@@ -75,14 +78,35 @@ export interface VariableDeclaration extends BaseToken<"variable-declaration"> {
   isConstant: boolean;
 }
 
+export interface Argument extends BaseToken<"argument"> {
+  name: string;
+}
+
+export interface FunctionDeclaration extends BaseToken<"function-declaration"> {
+  name: string;
+  arguments: Argument[];
+  body: Token[];
+}
+
+export interface FunctionCall extends BaseToken<"function-call"> {
+  name: string;
+  arguments: Token[];
+}
+
 export type Token =
   | Literal
   | BinaryExpression
   | ParenthesizedExpression
   | Variable
-  | VariableDeclaration;
+  | VariableDeclaration
+  | FunctionDeclaration
+  | Argument
+  | FunctionCall;
 
-export type Heap = Record<string, VariableDeclaration>;
+export type Heap = Record<
+  string,
+  VariableDeclaration | FunctionDeclaration | Argument
+>;
 
 export interface Context {
   heap: Heap;

@@ -3,6 +3,7 @@ import { DivisionLexar } from "./expressions/division";
 import { MultiplicationLexar } from "./expressions/multiplication";
 import { ParenthesisLexar } from "./expressions/parenthesis";
 import { SubtractionLexar } from "./expressions/subtraction";
+import { FunctionDeclarationLexar } from "./functions/declaration";
 import { BooleanLexar } from "./literals/boolean";
 import { FloatLexar } from "./literals/float";
 import { IntegerLexar } from "./literals/integer";
@@ -12,6 +13,7 @@ import { VariableDeclarationLexar } from "./variables/declaration";
 import { VariableLexar } from "./variables/read";
 
 const lexars: Lexar<any>[] = [
+  FunctionDeclarationLexar,
   VariableDeclarationLexar,
   ParenthesisLexar,
   MultiplicationLexar,
@@ -41,8 +43,8 @@ export function buildTokenFromStatement(
   throw new Error("Cannot tokenize statement: " + statement);
 }
 
-export function lexar(src: string): LexarResult {
-  const context: Context = {
+export function lexar(src: string, c?: Context): LexarResult {
+  const context: Context = c ?? {
     heap: {},
   };
 
@@ -54,6 +56,6 @@ export function lexar(src: string): LexarResult {
     .map((s) => buildTokenFromStatement(s, context))
     .filter((t): t is Token => t !== null);
 
-  console.log(JSON.stringify({ statements, context }, null, 4));
+  console.log(JSON.stringify({ src, statements, context }, null, 4));
   return { statements, context };
 }
