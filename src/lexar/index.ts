@@ -8,6 +8,7 @@ import { FunctionDeclarationLexar } from "./functions/declaration";
 import { BooleanLexar } from "./literals/boolean";
 import { FloatLexar } from "./literals/float";
 import { IntegerLexar } from "./literals/integer";
+import { RecordLexar } from "./literals/record";
 import { StringLexar } from "./literals/string";
 import type { Context, Lexar, LexarResult, Token } from "./types";
 import { VariableDeclarationLexar } from "./variables/declaration";
@@ -16,6 +17,7 @@ import { VariableLexar } from "./variables/read";
 const lexars: Lexar<any>[] = [
   FunctionDeclarationLexar,
   VariableDeclarationLexar,
+  RecordLexar,
   ParenthesisLexar,
   FunctionCallLexar,
   MultiplicationLexar,

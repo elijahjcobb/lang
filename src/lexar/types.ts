@@ -12,8 +12,9 @@ export interface BaseToken<T extends TokenType> {
   type: T;
 }
 
-export type LiteralType = "integer" | "float" | "string" | "boolean";
-export type LiteralValueType = number | string | boolean;
+export type LiteralType = "integer" | "float" | "string" | "boolean" | "record";
+export type LiteralValueTypeBase = string | number | boolean;
+export type LiteralValueType = LiteralValueTypeBase | Record<string, Token>;
 
 export interface BaseLiteral<T extends LiteralType, V extends LiteralValueType>
   extends BaseToken<"literal"> {
@@ -26,6 +27,7 @@ export const SUPPORTED_TYPES = [
   "Boolean",
   "Integer",
   "Float",
+  "Record",
 ] as const;
 
 export type SupportedType = (typeof SUPPORTED_TYPES)[number];
@@ -34,12 +36,14 @@ export type IntegerLiteral = BaseLiteral<"integer", number>;
 export type FloatLiteral = BaseLiteral<"float", number>;
 export type StringLiteral = BaseLiteral<"string", string>;
 export type BooleanLiteral = BaseLiteral<"boolean", boolean>;
+export type RecordLiteral = BaseLiteral<"record", Record<string, Token>>;
 
 export type Literal =
   | IntegerLiteral
   | FloatLiteral
   | StringLiteral
-  | BooleanLiteral;
+  | BooleanLiteral
+  | RecordLiteral;
 
 export type BinaryExpressionType =
   | "addition"
