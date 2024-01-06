@@ -1,10 +1,20 @@
-import type { Token } from "../lexar/types";
+import type { LexarResult } from "../lexar/types";
 
-export function interpret(tokens: Token[]): void {
-  console.log("Interpreting tokens...");
-  console.log({ tokens });
+export function interpret({ context, statements }: LexarResult): void {
+  console.log("Interpreting statements...");
+  console.log({ statements });
 
-  for (const token of tokens) {
+  const lines: string[] = [];
+
+  for (const [name, token] of Object.entries(context.heap)) {
+    if (token.type === "variable-declaration") {
+      lines.push(`${name}: ${token.value}`);
+    }
+  }
+
+  console.log(lines.join("\n"));
+
+  for (const token of statements) {
     console.log("Interpreting token...");
     console.log({ token });
     if (token.type === "binary-expression") {
