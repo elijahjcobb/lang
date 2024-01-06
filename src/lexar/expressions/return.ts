@@ -23,7 +23,6 @@ function assertType(context: Context, expression: Token | null): void {
       break;
     case "variable":
       const variable = context.heap[expression.name];
-      console.log({ variable, expectedType });
       if (!variable || variable.type !== "variable-declaration")
         throw new Error(
           "Returning something from the heap that is not a variable."
@@ -33,8 +32,6 @@ function assertType(context: Context, expression: Token | null): void {
     default:
       throw new Error(`Cannot return ${expression.type}`);
   }
-
-  console.log(JSON.stringify({ expectedType, expression }, null, 2));
 }
 
 export const ReturnExpressionLexar: Lexar<ReturnExpression> = {
@@ -49,7 +46,6 @@ export const ReturnExpressionLexar: Lexar<ReturnExpression> = {
     const statement = src.trim().slice(6);
 
     const returnExpression = buildTokenFromStatement(statement, context);
-    console.log(JSON.stringify({ src, context, returnExpression, statement }));
     assertType(context, returnExpression);
     return {
       type: "return-expression",

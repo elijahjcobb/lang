@@ -60,26 +60,36 @@ describe("return", () => {
       },
     ]);
   });
-  it("works on return integer variable", () => {
+  it.only("works on return integer variable", () => {
     expect(
       lexar(`
     let a: Integer = 32;
-    fun a(): Integer { return a; }
+    fun b(): Integer { return a; }
     `).statements
     ).toEqual([
+      {
+        isConstant: true,
+        name: "a",
+        runtimeType: "Integer",
+        type: "variable-declaration",
+        value: {
+          literalType: "Integer",
+          type: "literal",
+          value: 32,
+        },
+      },
       {
         arguments: [],
         body: [
           {
             expression: {
-              type: "literal",
-              value: 42,
-              literalType: "Integer",
+              name: "a",
+              type: "variable",
             },
             type: "return-expression",
           },
         ],
-        name: "a",
+        name: "b",
         returnType: "Integer",
         type: "function-declaration",
       },
