@@ -1,13 +1,17 @@
-import { buildTokenFromStatement, lexar } from "..";
-import type { Argument, Context, FunctionDeclaration, Lexar } from "../types";
+import { lexar } from "..";
+import type {
+  Argument,
+  Context,
+  FunctionDeclaration,
+  Lexar,
+  Token,
+} from "../types";
 
 export const FunctionDeclarationLexar: Lexar<FunctionDeclaration> = {
   canLexar: (statement: string) => {
     return statement.startsWith("fun") && statement.endsWith("}");
   },
   lexar: (src, context) => {
-    console.log({ src });
-
     const statement = src.slice(3);
 
     const argumentStartIndex = statement.indexOf("(");
@@ -28,18 +32,21 @@ export const FunctionDeclarationLexar: Lexar<FunctionDeclaration> = {
       name,
     }));
 
-    console.log({ name, args, bodyString });
-
-    const newContext: Context = {
-      ...context,
-      heap: {
-        ...context.heap,
-      },
-    };
+    const newContext: Context = JSON.parse(JSON.stringify(context));
 
     for (const arg of args) {
       newContext.heap[arg.name] = arg;
     }
+
+    const token: Token = {
+      type: "function-declaration",
+      name,
+      arguments: args,
+      body: lexar(bodyString, newContext).statements,
+    };
+
+    context.heap[name] = token;
+    newContext.heap[name] = token;
 
     return {
       type: "function-declaration",

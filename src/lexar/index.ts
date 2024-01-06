@@ -3,6 +3,7 @@ import { DivisionLexar } from "./expressions/division";
 import { MultiplicationLexar } from "./expressions/multiplication";
 import { ParenthesisLexar } from "./expressions/parenthesis";
 import { SubtractionLexar } from "./expressions/subtraction";
+import { FunctionCallLexar } from "./functions/call";
 import { FunctionDeclarationLexar } from "./functions/declaration";
 import { BooleanLexar } from "./literals/boolean";
 import { FloatLexar } from "./literals/float";
@@ -14,6 +15,7 @@ import { VariableLexar } from "./variables/read";
 
 const lexars: Lexar<any>[] = [
   FunctionDeclarationLexar,
+  FunctionCallLexar,
   VariableDeclarationLexar,
   ParenthesisLexar,
   MultiplicationLexar,
@@ -56,6 +58,6 @@ export function lexar(src: string, c?: Context): LexarResult {
     .map((s) => buildTokenFromStatement(s, context))
     .filter((t): t is Token => t !== null);
 
-  console.log(JSON.stringify({ src, statements, context }, null, 4));
+  console.log(JSON.stringify({ statements, context }, null, 4));
   return { statements, context };
 }
