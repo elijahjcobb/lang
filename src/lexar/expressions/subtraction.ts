@@ -6,7 +6,7 @@ export const SubtractionLexar: Lexar<SubtractBinaryExpression> = {
     const minusCharIndex = src.indexOf("-");
     return minusCharIndex !== -1 && src[minusCharIndex + 1] === " ";
   },
-  lexar: (src: string) => {
-    return tokenizeBinaryExpression(src, "subtraction", "-");
+  lexar: (src: string, context) => {
+    return tokenizeBinaryExpression(src, context, "subtraction", "-");
   },
 };

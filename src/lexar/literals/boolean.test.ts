@@ -2,7 +2,7 @@ import { lexar } from "..";
 
 describe("boolean", () => {
   it("works on true", () => {
-    expect(lexar(`true`)).toEqual([
+    expect(lexar(`true`).statements).toEqual([
       {
         type: "literal",
         literalType: "boolean",
@@ -11,7 +11,7 @@ describe("boolean", () => {
     ]);
   });
   it("works on false", () => {
-    expect(lexar(`false`)).toEqual([
+    expect(lexar(`false`).statements).toEqual([
       {
         type: "literal",
         literalType: "boolean",

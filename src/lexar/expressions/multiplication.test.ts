@@ -2,7 +2,7 @@ import { lexar } from "..";
 
 describe("multiplication", () => {
   it("works on basic", () => {
-    expect(lexar(`1 * 2`)).toEqual([
+    expect(lexar(`1 * 2`).statements).toEqual([
       {
         type: "binary-expression",
         expression: "multiplication",

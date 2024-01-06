@@ -2,7 +2,7 @@ import { lexar } from "..";
 
 describe("integer", () => {
   it("works on positive", () => {
-    expect(lexar(`42`)).toEqual([
+    expect(lexar(`42`).statements).toEqual([
       {
         type: "literal",
         literalType: "integer",
@@ -11,7 +11,7 @@ describe("integer", () => {
     ]);
   });
   it("works on negative", () => {
-    expect(lexar(`-42`)).toEqual([
+    expect(lexar(`-42`).statements).toEqual([
       {
         type: "literal",
         literalType: "integer",

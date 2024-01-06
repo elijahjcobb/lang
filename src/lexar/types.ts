@@ -1,7 +1,9 @@
 export type TokenType =
   | "literal"
   | "binary-expression"
-  | "parenthesized-expression";
+  | "parenthesized-expression"
+  | "variable-declaration"
+  | "variable";
 
 export interface BaseToken<T extends TokenType> {
   type: T;
@@ -43,7 +45,7 @@ export type BinaryOpChild =
 export interface BaseBinaryExpression<T extends BinaryExpressionType>
   extends BaseToken<"binary-expression"> {
   expression: T;
-  left: Token;
+  left: BinaryOpChild;
   right: BinaryOpChild;
 }
 
@@ -63,9 +65,35 @@ export interface ParenthesizedExpression<T extends Token = Token>
   expression: T | null;
 }
 
-export type Token = Literal | BinaryExpression | ParenthesizedExpression;
+export interface Variable extends BaseToken<"variable"> {
+  name: string;
+}
+
+export interface VariableDeclaration extends BaseToken<"variable-declaration"> {
+  name: string;
+  value: Token;
+  isConstant: boolean;
+}
+
+export type Token =
+  | Literal
+  | BinaryExpression
+  | ParenthesizedExpression
+  | Variable
+  | VariableDeclaration;
+
+export type Heap = Record<string, VariableDeclaration>;
+
+export interface Context {
+  heap: Heap;
+}
 
 export interface Lexar<T extends Token> {
-  canLexar(src: string): boolean;
-  lexar(src: string): T;
+  canLexar(src: string, context: Context): boolean;
+  lexar(src: string, context: Context): T;
+}
+
+export interface LexarResult {
+  statements: Token[];
+  context: Context;
 }

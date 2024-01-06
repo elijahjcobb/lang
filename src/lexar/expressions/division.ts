@@ -5,7 +5,7 @@ export const DivisionLexar: Lexar<DivideBinaryExpression> = {
   canLexar: (src: string) => {
     return src.includes("/");
   },
-  lexar: (src: string) => {
-    return tokenizeBinaryExpression(src, "division", "/");
+  lexar: (src, context) => {
+    return tokenizeBinaryExpression(src, context, "division", "/");
   },
 };

@@ -2,7 +2,7 @@ import { lexar } from "..";
 
 describe("addition", () => {
   it("works on basic", () => {
-    expect(lexar(`1 + 2`)).toEqual([
+    expect(lexar(`1 + 2`).statements).toEqual([
       {
         type: "binary-expression",
         expression: "addition",
@@ -20,7 +20,7 @@ describe("addition", () => {
     ]);
   });
   it("works with parenthesis", () => {
-    expect(lexar(`(1) + 2`)).toEqual([
+    expect(lexar(`(1) + 2`).statements).toEqual([
       {
         type: "binary-expression",
         expression: "addition",
@@ -41,7 +41,7 @@ describe("addition", () => {
     ]);
   });
   it("works on many in chain", () => {
-    expect(lexar(`1 + 2 + 3`)).toEqual([
+    expect(lexar(`1 + 2 + 3`).statements).toEqual([
       {
         type: "binary-expression",
         expression: "addition",

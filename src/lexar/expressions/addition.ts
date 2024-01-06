@@ -5,7 +5,7 @@ export const AdditionLexar: Lexar<AddBinaryExpression> = {
   canLexar: (src: string) => {
     return src.includes("+");
   },
-  lexar: (src: string) => {
-    return tokenizeBinaryExpression(src, "addition", "+");
+  lexar: (src, context) => {
+    return tokenizeBinaryExpression(src, context, "addition", "+");
   },
 };

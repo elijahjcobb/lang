@@ -5,7 +5,7 @@ export const MultiplicationLexar: Lexar<MultiplyBinaryExpression> = {
   canLexar: (src: string) => {
     return src.includes("*");
   },
-  lexar: (src: string) => {
-    return tokenizeBinaryExpression(src, "multiplication", "*");
+  lexar: (src, context) => {
+    return tokenizeBinaryExpression(src, context, "multiplication", "*");
   },
 };

@@ -5,11 +5,11 @@ export const ParenthesisLexar: Lexar<ParenthesizedExpression> = {
   canLexar: (statement: string) => {
     return statement.startsWith("(") && statement.endsWith(")");
   },
-  lexar: (statement: string) => {
+  lexar: (statement, context) => {
     const child = statement.slice(1, -1);
     return {
       type: "parenthesized-expression",
-      expression: buildTokenFromStatement(child),
+      expression: buildTokenFromStatement(child, context),
     };
   },
 };

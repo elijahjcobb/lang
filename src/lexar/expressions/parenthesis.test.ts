@@ -2,7 +2,7 @@ import { lexar } from "..";
 
 describe("parenthesis", () => {
   it("works on empty", () => {
-    expect(lexar(`()`)).toEqual([
+    expect(lexar(`()`).statements).toEqual([
       {
         type: "parenthesized-expression",
         expression: null,
@@ -10,7 +10,7 @@ describe("parenthesis", () => {
     ]);
   });
   it("works on number", () => {
-    expect(lexar(`(1)`)).toEqual([
+    expect(lexar(`(1)`).statements).toEqual([
       {
         type: "parenthesized-expression",
         expression: {
@@ -22,7 +22,7 @@ describe("parenthesis", () => {
     ]);
   });
   it("works on boolean", () => {
-    expect(lexar(`(false)`)).toEqual([
+    expect(lexar(`(false)`).statements).toEqual([
       {
         type: "parenthesized-expression",
         expression: {
@@ -34,7 +34,7 @@ describe("parenthesis", () => {
     ]);
   });
   it("works on string", () => {
-    expect(lexar(`('hi')`)).toEqual([
+    expect(lexar(`('hi')`).statements).toEqual([
       {
         type: "parenthesized-expression",
         expression: {
@@ -46,7 +46,7 @@ describe("parenthesis", () => {
     ]);
   });
   it("works on nested", () => {
-    expect(lexar(`(((3)))`)).toEqual([
+    expect(lexar(`(((3)))`).statements).toEqual([
       {
         expression: {
           expression: {
@@ -64,7 +64,7 @@ describe("parenthesis", () => {
     ]);
   });
   it("works on addition", () => {
-    expect(lexar(`(1 + 2)`)).toEqual([
+    expect(lexar(`(1 + 2)`).statements).toEqual([
       {
         type: "parenthesized-expression",
         expression: {
