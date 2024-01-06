@@ -1,6 +1,8 @@
 module.exports = {
   clearMocks: true,
-  coverageDirectory: "coverage",
-  roots: ["<rootDir>/build/js"],
+  roots: ["<rootDir>/src"],
   testEnvironment: "node",
+  preset: "ts-jest",
+  coverageDirectory: "coverage",
+  testPathIgnorePatterns: ["/node_modules/"],
 };

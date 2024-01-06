@@ -1,38 +1,39 @@
 {
-	"name": "@elijahjcobb/***",
-	"version": "0.1.0",
-	"description": "",
-	"keywords": [],
-	"main": "build/js/index",
-	"types": "build/dts/index",
-	"files": [
-		"build"
-	],
-	"scripts": {
-		"test": "npm run compile && jest .",
-		"prepublishOnly": "npm run compile",
-		"compile": "npm run clean && tsc -p tsconfig.json",
-		"clean": "rm -rf build",
-		"start": "node build/js/index.js"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/elijahjcobb/***.git"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"author": "Elijah Cobb <elijah@elijahcobb.com> (https://elijahcobb.com/)",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/elijahjcobb/***/issues"
-	},
-	"homepage": "https://github.com/elijahjcobb/***#readme",
-	"dependencies": {},
-	"devDependencies": {
-		"@types/node": "latest",
-		"typescript": "latest",
-		"jest": "latest",
-		"@types/jest": "latest"
-	}
+  "name": "@elijahjcobb/***",
+  "version": "0.1.0",
+  "description": "",
+  "keywords": [],
+  "main": "build/js/index",
+  "types": "build/dts/index",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "test": "jest",
+    "prepublishOnly": "npm run compile",
+    "compile": "npm run clean && tsc -p tsconfig.json",
+    "clean": "rm -rf build",
+    "start": "node build/js/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elijahjcobb/***.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Elijah Cobb <elijah@elijahcobb.com> (https://elijahcobb.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elijahjcobb/***/issues"
+  },
+  "homepage": "https://github.com/elijahjcobb/***#readme",
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@types/jest": "latest",
+    "@types/node": "latest",
+    "jest": "latest",
+    "ts-jest": "^29.1.1",
+    "typescript": "latest"
+  }
 }
