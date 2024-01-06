@@ -15,9 +15,9 @@ import { VariableLexar } from "./variables/read";
 
 const lexars: Lexar<any>[] = [
   FunctionDeclarationLexar,
-  FunctionCallLexar,
   VariableDeclarationLexar,
   ParenthesisLexar,
+  FunctionCallLexar,
   MultiplicationLexar,
   DivisionLexar,
   AdditionLexar,
