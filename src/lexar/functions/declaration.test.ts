@@ -190,6 +190,139 @@ describe("declaration", () => {
       },
     });
   });
+  it("works allows defining local vars", () => {
+    expect(
+      lexar(`fun add(a: Integer, b: Integer): Void { 
+        let x: Integer = 3;
+        a + b - x * 31
+       }`)
+    ).toEqual({
+      statements: [
+        {
+          type: "function-declaration",
+          name: "add",
+          arguments: [
+            {
+              type: "argument",
+              name: "a",
+              runtimeType: "Integer",
+            },
+            {
+              type: "argument",
+              name: "b",
+              runtimeType: "Integer",
+            },
+          ],
+          returnType: "Void",
+          body: [
+            {
+              type: "variable-declaration",
+              name: "x",
+              isConstant: true,
+              runtimeType: "Integer",
+              value: {
+                type: "literal",
+                literalType: "integer",
+                value: 3,
+              },
+            },
+            {
+              type: "binary-expression",
+              expression: "multiplication",
+              left: {
+                type: "binary-expression",
+                expression: "addition",
+                left: {
+                  type: "variable",
+                  name: "a",
+                },
+                right: {
+                  type: "binary-expression",
+                  expression: "subtraction",
+                  left: {
+                    type: "variable",
+                    name: "b",
+                  },
+                  right: {
+                    type: "variable",
+                    name: "x",
+                  },
+                },
+              },
+              right: {
+                type: "literal",
+                literalType: "integer",
+                value: 31,
+              },
+            },
+          ],
+        },
+      ],
+      context: {
+        heap: {
+          add: {
+            type: "function-declaration",
+            name: "add",
+            arguments: [
+              {
+                type: "argument",
+                name: "a",
+                runtimeType: "Integer",
+              },
+              {
+                type: "argument",
+                name: "b",
+                runtimeType: "Integer",
+              },
+            ],
+            returnType: "Void",
+            body: [
+              {
+                type: "variable-declaration",
+                name: "x",
+                isConstant: true,
+                runtimeType: "Integer",
+                value: {
+                  type: "literal",
+                  literalType: "integer",
+                  value: 3,
+                },
+              },
+              {
+                type: "binary-expression",
+                expression: "multiplication",
+                left: {
+                  type: "binary-expression",
+                  expression: "addition",
+                  left: {
+                    type: "variable",
+                    name: "a",
+                  },
+                  right: {
+                    type: "binary-expression",
+                    expression: "subtraction",
+                    left: {
+                      type: "variable",
+                      name: "b",
+                    },
+                    right: {
+                      type: "variable",
+                      name: "x",
+                    },
+                  },
+                },
+                right: {
+                  type: "literal",
+                  literalType: "integer",
+                  value: 31,
+                },
+              },
+            ],
+          },
+        },
+      },
+    });
+  });
   it("works on normal value", () => {
     expect(
       lexar(`fun add(a: Integer, b: Integer): Void { a + b - 1 * 2389 }`)

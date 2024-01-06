@@ -103,7 +103,7 @@ export function lexar(src: string, c?: Context): LexarResult {
 
   statements.push(...rawStatements);
 
-  // console.log(JSON.stringify({ statements, context, src }, null, 4));
+  console.log(JSON.stringify({ statements, context, src }, null, 4));
 
   return { statements, context };
 }

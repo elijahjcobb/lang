@@ -30,7 +30,6 @@ const variableDeclarationLexar = (
   if (!type) throw new Error("Variable must have a type");
   if (!isSupportedType(type))
     throw new Error("Variable must have a valid type");
-  if (context.heap[name]) throw new Error("Variable already exists");
 
   const token: VariableDeclaration = {
     type: "variable-declaration",
