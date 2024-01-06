@@ -1,0 +1,7 @@
+.idea
+node_modules
+dts
+js
+dist
+build
+.DS_Store
