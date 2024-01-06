@@ -5,15 +5,15 @@ describe("record", () => {
     expect(lexar(`{ hi: 1, b: true}`).statements).toEqual([
       {
         type: "literal",
-        literalType: "record",
+        literalType: "Record",
         value: {
           b: {
-            literalType: "boolean",
+            literalType: "Boolean",
             type: "literal",
             value: true,
           },
           hi: {
-            literalType: "integer",
+            literalType: "Integer",
             type: "literal",
             value: 1,
           },
@@ -29,17 +29,17 @@ describe("record", () => {
         runtimeType: "Integer",
         type: "variable-declaration",
         value: {
-          literalType: "integer",
+          literalType: "Integer",
           type: "literal",
           value: 1,
         },
       },
       {
-        literalType: "record",
+        literalType: "Record",
         type: "literal",
         value: {
           b: {
-            literalType: "boolean",
+            literalType: "Boolean",
             type: "literal",
             value: true,
           },

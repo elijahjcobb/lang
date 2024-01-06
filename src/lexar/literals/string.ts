@@ -7,7 +7,7 @@ export const StringLexar: Lexar<StringLiteral> = {
   lexar: (statement: string) => {
     return {
       type: "literal",
-      literalType: "string",
+      literalType: "String",
       value: statement.slice(1, statement.length - 1),
     };
   },

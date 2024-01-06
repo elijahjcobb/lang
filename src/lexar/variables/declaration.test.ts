@@ -11,7 +11,7 @@ describe("variables", () => {
         isConstant: true,
         value: {
           type: "literal",
-          literalType: "integer",
+          literalType: "Integer",
           value: 1,
         },
       },
@@ -23,7 +23,7 @@ describe("variables", () => {
         runtimeType: "Integer",
         type: "variable-declaration",
         value: {
-          literalType: "integer",
+          literalType: "Integer",
           type: "literal",
           value: 1,
         },
@@ -40,7 +40,7 @@ describe("variables", () => {
         isConstant: false,
         value: {
           type: "literal",
-          literalType: "string",
+          literalType: "String",
           value: "hi",
         },
       },
@@ -53,7 +53,7 @@ describe("variables", () => {
         isConstant: false,
         value: {
           type: "literal",
-          literalType: "string",
+          literalType: "String",
           value: "hi",
         },
       },
@@ -70,7 +70,7 @@ describe("variables", () => {
         runtimeType: "Integer",
         value: {
           type: "literal",
-          literalType: "integer",
+          literalType: "Integer",
           value: 1,
         },
       },
@@ -84,7 +84,7 @@ describe("variables", () => {
           expression: "addition",
           left: {
             type: "literal",
-            literalType: "integer",
+            literalType: "Integer",
             value: 2,
           },
           right: {

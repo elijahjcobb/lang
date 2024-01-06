@@ -8,12 +8,12 @@ describe("multiplication", () => {
         expression: "multiplication",
         left: {
           type: "literal",
-          literalType: "integer",
+          literalType: "Integer",
           value: 1,
         },
         right: {
           type: "literal",
-          literalType: "integer",
+          literalType: "Integer",
           value: 2,
         },
       },

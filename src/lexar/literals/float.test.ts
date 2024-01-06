@@ -5,7 +5,7 @@ describe("float", () => {
     expect(lexar(`3.14`).statements).toEqual([
       {
         type: "literal",
-        literalType: "float",
+        literalType: "Float",
         value: 3.14,
       },
     ]);
@@ -14,7 +14,7 @@ describe("float", () => {
     expect(lexar(`-3.14`).statements).toEqual([
       {
         type: "literal",
-        literalType: "float",
+        literalType: "Float",
         value: -3.14,
       },
     ]);

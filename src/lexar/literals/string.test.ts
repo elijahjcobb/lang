@@ -5,7 +5,7 @@ describe("string", () => {
     expect(lexar(`'hello, world!'`).statements).toEqual([
       {
         type: "literal",
-        literalType: "string",
+        literalType: "String",
         value: "hello, world!",
       },
     ]);
@@ -14,7 +14,7 @@ describe("string", () => {
     expect(lexar(`''`).statements).toEqual([
       {
         type: "literal",
-        literalType: "string",
+        literalType: "String",
         value: "",
       },
     ]);

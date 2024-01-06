@@ -13,7 +13,7 @@ export interface BaseToken<T extends TokenType> {
   type: T;
 }
 
-export type LiteralType = "integer" | "float" | "string" | "boolean" | "record";
+export type LiteralType = "Integer" | "Float" | "String" | "Boolean" | "Record";
 export type LiteralValueTypeBase = string | number | boolean;
 export type LiteralValueType = LiteralValueTypeBase | Record<string, Token>;
 
@@ -34,11 +34,11 @@ export const SUPPORTED_TYPES = [
 
 export type SupportedType = (typeof SUPPORTED_TYPES)[number];
 
-export type IntegerLiteral = BaseLiteral<"integer", number>;
-export type FloatLiteral = BaseLiteral<"float", number>;
-export type StringLiteral = BaseLiteral<"string", string>;
-export type BooleanLiteral = BaseLiteral<"boolean", boolean>;
-export type RecordLiteral = BaseLiteral<"record", Record<string, Token>>;
+export type IntegerLiteral = BaseLiteral<"Integer", number>;
+export type FloatLiteral = BaseLiteral<"Float", number>;
+export type StringLiteral = BaseLiteral<"String", string>;
+export type BooleanLiteral = BaseLiteral<"Boolean", boolean>;
+export type RecordLiteral = BaseLiteral<"Record", Record<string, Token>>;
 
 export type Literal =
   | IntegerLiteral

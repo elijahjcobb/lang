@@ -15,7 +15,7 @@ describe("parenthesis", () => {
         type: "parenthesized-expression",
         expression: {
           type: "literal",
-          literalType: "integer",
+          literalType: "Integer",
           value: 1,
         },
       },
@@ -27,7 +27,7 @@ describe("parenthesis", () => {
         type: "parenthesized-expression",
         expression: {
           type: "literal",
-          literalType: "boolean",
+          literalType: "Boolean",
           value: false,
         },
       },
@@ -39,7 +39,7 @@ describe("parenthesis", () => {
         type: "parenthesized-expression",
         expression: {
           type: "literal",
-          literalType: "string",
+          literalType: "String",
           value: "hi",
         },
       },
@@ -51,7 +51,7 @@ describe("parenthesis", () => {
         expression: {
           expression: {
             expression: {
-              literalType: "integer",
+              literalType: "Integer",
               type: "literal",
               value: 3,
             },
@@ -72,12 +72,12 @@ describe("parenthesis", () => {
           expression: "addition",
           left: {
             type: "literal",
-            literalType: "integer",
+            literalType: "Integer",
             value: 1,
           },
           right: {
             type: "literal",
-            literalType: "integer",
+            literalType: "Integer",
             value: 2,
           },
         },

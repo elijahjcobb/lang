@@ -5,7 +5,7 @@ describe("boolean", () => {
     expect(lexar(`true`).statements).toEqual([
       {
         type: "literal",
-        literalType: "boolean",
+        literalType: "Boolean",
         value: true,
       },
     ]);
@@ -14,7 +14,7 @@ describe("boolean", () => {
     expect(lexar(`false`).statements).toEqual([
       {
         type: "literal",
-        literalType: "boolean",
+        literalType: "Boolean",
         value: false,
       },
     ]);

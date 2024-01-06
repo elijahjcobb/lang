@@ -7,7 +7,7 @@ export const BooleanLexar: Lexar<BooleanLiteral> = {
   lexar: (statement: string) => {
     return {
       type: "literal",
-      literalType: "boolean",
+      literalType: "Boolean",
       value: statement === "true",
     };
   },

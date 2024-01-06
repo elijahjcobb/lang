@@ -29,7 +29,7 @@ describe("return", () => {
             expression: {
               type: "literal",
               value: "hi",
-              literalType: "string",
+              literalType: "String",
             },
             type: "return-expression",
           },
@@ -49,7 +49,7 @@ describe("return", () => {
             expression: {
               type: "literal",
               value: 42,
-              literalType: "integer",
+              literalType: "Integer",
             },
             type: "return-expression",
           },
@@ -60,9 +60,46 @@ describe("return", () => {
       },
     ]);
   });
-  // it.only("throw when the return type is not correct", () => {
-  //   expect(() =>
-  //     lexar(`fun a(): Integer { return 'Hello, world!'; }`)
-  //   ).toThrow();
-  // });
+  it("works on return integer variable", () => {
+    expect(
+      lexar(`
+    let a: Integer = 32;
+    fun a(): Integer { return a; }
+    `).statements
+    ).toEqual([
+      {
+        arguments: [],
+        body: [
+          {
+            expression: {
+              type: "literal",
+              value: 42,
+              literalType: "Integer",
+            },
+            type: "return-expression",
+          },
+        ],
+        name: "a",
+        returnType: "Integer",
+        type: "function-declaration",
+      },
+    ]);
+  });
+  describe("assert types", () => {
+    it("throw when the return type is not correct on literal", () => {
+      expect(() =>
+        lexar(`fun a(): Integer { return 'Hello, world!'; }`)
+      ).toThrow();
+    });
+    it("throw when the return type is not correct on variable", () => {
+      expect(() =>
+        lexar(`
+        let x: Boolean = true;
+        fun a(): Integer { return x }`)
+      ).toThrow();
+    });
+    it("throw when the return type is not Void and nothing is returned", () => {
+      expect(() => lexar(`fun a(): Integer { return }`)).toThrow();
+    });
+  });
 });

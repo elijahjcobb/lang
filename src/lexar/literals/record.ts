@@ -24,7 +24,7 @@ export const RecordLexar: Lexar<RecordLiteral> = {
     }
     return {
       type: "literal",
-      literalType: "record",
+      literalType: "Record",
       value,
     };
   },

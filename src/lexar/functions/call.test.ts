@@ -25,7 +25,7 @@ describe("variables", () => {
                     expression: "subtraction",
                     left: { name: "b", type: "variable" },
                     right: {
-                      literalType: "integer",
+                      literalType: "Integer",
                       type: "literal",
                       value: 1,
                     },
@@ -33,7 +33,7 @@ describe("variables", () => {
                   },
                   type: "binary-expression",
                 },
-                right: { literalType: "integer", type: "literal", value: 2389 },
+                right: { literalType: "Integer", type: "literal", value: 2389 },
                 type: "binary-expression",
               },
             ],
@@ -46,7 +46,7 @@ describe("variables", () => {
             name: "y",
             runtimeType: "Integer",
             type: "variable-declaration",
-            value: { literalType: "integer", type: "literal", value: 1 },
+            value: { literalType: "Integer", type: "literal", value: 1 },
           },
         },
       },
@@ -56,7 +56,7 @@ describe("variables", () => {
           name: "y",
           runtimeType: "Integer",
           type: "variable-declaration",
-          value: { literalType: "integer", type: "literal", value: 1 },
+          value: { literalType: "Integer", type: "literal", value: 1 },
         },
         {
           arguments: [
@@ -72,12 +72,12 @@ describe("variables", () => {
                 right: {
                   expression: "subtraction",
                   left: { name: "b", type: "variable" },
-                  right: { literalType: "integer", type: "literal", value: 1 },
+                  right: { literalType: "Integer", type: "literal", value: 1 },
                   type: "binary-expression",
                 },
                 type: "binary-expression",
               },
-              right: { literalType: "integer", type: "literal", value: 2389 },
+              right: { literalType: "Integer", type: "literal", value: 2389 },
               type: "binary-expression",
             },
           ],
@@ -87,7 +87,7 @@ describe("variables", () => {
         },
         {
           arguments: [
-            { literalType: "integer", type: "literal", value: 1 },
+            { literalType: "Integer", type: "literal", value: 1 },
             { name: "y", type: "variable" },
           ],
           name: "add",
@@ -134,7 +134,7 @@ describe("variables", () => {
                       type: "variable",
                     },
                     right: {
-                      literalType: "integer",
+                      literalType: "Integer",
                       type: "literal",
                       value: 1,
                     },
@@ -146,7 +146,7 @@ describe("variables", () => {
                   expression: {
                     expression: "subtraction",
                     left: {
-                      literalType: "integer",
+                      literalType: "Integer",
                       type: "literal",
                       value: 2389,
                     },
@@ -171,7 +171,7 @@ describe("variables", () => {
             runtimeType: "Integer",
             type: "variable-declaration",
             value: {
-              literalType: "integer",
+              literalType: "Integer",
               type: "literal",
               value: 1,
             },
@@ -182,7 +182,7 @@ describe("variables", () => {
             runtimeType: "Integer",
             type: "variable-declaration",
             value: {
-              literalType: "integer",
+              literalType: "Integer",
               type: "literal",
               value: 21,
             },
@@ -196,7 +196,7 @@ describe("variables", () => {
           runtimeType: "Integer",
           type: "variable-declaration",
           value: {
-            literalType: "integer",
+            literalType: "Integer",
             type: "literal",
             value: 1,
           },
@@ -207,7 +207,7 @@ describe("variables", () => {
           runtimeType: "Integer",
           type: "variable-declaration",
           value: {
-            literalType: "integer",
+            literalType: "Integer",
             type: "literal",
             value: 21,
           },
@@ -241,7 +241,7 @@ describe("variables", () => {
                     type: "variable",
                   },
                   right: {
-                    literalType: "integer",
+                    literalType: "Integer",
                     type: "literal",
                     value: 1,
                   },
@@ -253,7 +253,7 @@ describe("variables", () => {
                 expression: {
                   expression: "subtraction",
                   left: {
-                    literalType: "integer",
+                    literalType: "Integer",
                     type: "literal",
                     value: 2389,
                   },
@@ -275,7 +275,7 @@ describe("variables", () => {
         {
           arguments: [
             {
-              literalType: "integer",
+              literalType: "Integer",
               type: "literal",
               value: 1,
             },

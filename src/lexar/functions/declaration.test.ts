@@ -56,7 +56,7 @@ describe("declaration", () => {
           runtimeType: "Integer",
           value: {
             type: "literal",
-            literalType: "integer",
+            literalType: "Integer",
             value: 3,
           },
         },
@@ -102,7 +102,7 @@ describe("declaration", () => {
               },
               right: {
                 type: "literal",
-                literalType: "integer",
+                literalType: "Integer",
                 value: 31,
               },
             },
@@ -114,12 +114,12 @@ describe("declaration", () => {
           arguments: [
             {
               type: "literal",
-              literalType: "integer",
+              literalType: "Integer",
               value: 1,
             },
             {
               type: "literal",
-              literalType: "integer",
+              literalType: "Integer",
               value: 2,
             },
           ],
@@ -135,7 +135,7 @@ describe("declaration", () => {
             runtimeType: "Integer",
             value: {
               type: "literal",
-              literalType: "integer",
+              literalType: "Integer",
               value: 3,
             },
           },
@@ -181,7 +181,7 @@ describe("declaration", () => {
                 },
                 right: {
                   type: "literal",
-                  literalType: "integer",
+                  literalType: "Integer",
                   value: 31,
                 },
               },
@@ -223,7 +223,7 @@ describe("declaration", () => {
               runtimeType: "Integer",
               value: {
                 type: "literal",
-                literalType: "integer",
+                literalType: "Integer",
                 value: 3,
               },
             },
@@ -252,7 +252,7 @@ describe("declaration", () => {
               },
               right: {
                 type: "literal",
-                literalType: "integer",
+                literalType: "Integer",
                 value: 31,
               },
             },
@@ -286,7 +286,7 @@ describe("declaration", () => {
                 runtimeType: "Integer",
                 value: {
                   type: "literal",
-                  literalType: "integer",
+                  literalType: "Integer",
                   value: 3,
                 },
               },
@@ -315,7 +315,7 @@ describe("declaration", () => {
                 },
                 right: {
                   type: "literal",
-                  literalType: "integer",
+                  literalType: "Integer",
                   value: 31,
                 },
               },
@@ -361,7 +361,7 @@ describe("declaration", () => {
                       type: "variable",
                     },
                     right: {
-                      literalType: "integer",
+                      literalType: "Integer",
                       type: "literal",
                       value: 1,
                     },
@@ -370,7 +370,7 @@ describe("declaration", () => {
                   type: "binary-expression",
                 },
                 right: {
-                  literalType: "integer",
+                  literalType: "Integer",
                   type: "literal",
                   value: 2389,
                 },
@@ -413,7 +413,7 @@ describe("declaration", () => {
                     type: "variable",
                   },
                   right: {
-                    literalType: "integer",
+                    literalType: "Integer",
                     type: "literal",
                     value: 1,
                   },
@@ -422,7 +422,7 @@ describe("declaration", () => {
                 type: "binary-expression",
               },
               right: {
-                literalType: "integer",
+                literalType: "Integer",
                 type: "literal",
                 value: 2389,
               },

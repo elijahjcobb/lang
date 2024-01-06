@@ -8,12 +8,12 @@ describe("division", () => {
         expression: "division",
         left: {
           type: "literal",
-          literalType: "integer",
+          literalType: "Integer",
           value: 1,
         },
         right: {
           type: "literal",
-          literalType: "integer",
+          literalType: "Integer",
           value: 2,
         },
       },

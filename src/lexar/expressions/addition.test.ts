@@ -8,12 +8,12 @@ describe("addition", () => {
         expression: "addition",
         left: {
           type: "literal",
-          literalType: "integer",
+          literalType: "Integer",
           value: 1,
         },
         right: {
           type: "literal",
-          literalType: "integer",
+          literalType: "Integer",
           value: 2,
         },
       },
@@ -28,13 +28,13 @@ describe("addition", () => {
           type: "parenthesized-expression",
           expression: {
             type: "literal",
-            literalType: "integer",
+            literalType: "Integer",
             value: 1,
           },
         },
         right: {
           type: "literal",
-          literalType: "integer",
+          literalType: "Integer",
           value: 2,
         },
       },
@@ -50,18 +50,18 @@ describe("addition", () => {
           expression: "addition",
           left: {
             type: "literal",
-            literalType: "integer",
+            literalType: "Integer",
             value: 1,
           },
           right: {
             type: "literal",
-            literalType: "integer",
+            literalType: "Integer",
             value: 2,
           },
         },
         right: {
           type: "literal",
-          literalType: "integer",
+          literalType: "Integer",
           value: 3,
         },
       },

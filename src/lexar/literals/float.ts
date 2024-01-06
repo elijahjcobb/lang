@@ -8,7 +8,7 @@ export const FloatLexar: Lexar<FloatLiteral> = {
   lexar: (statement: string) => {
     return {
       type: "literal",
-      literalType: "float",
+      literalType: "Float",
       value: parseFloat(statement),
     };
   },

@@ -11,7 +11,7 @@ describe("read", () => {
         runtimeType: "Integer",
         type: "variable-declaration",
         value: {
-          literalType: "integer",
+          literalType: "Integer",
           type: "literal",
           value: 1,
         },
@@ -28,7 +28,7 @@ describe("read", () => {
             type: "variable",
           },
           right: {
-            literalType: "integer",
+            literalType: "Integer",
             type: "literal",
             value: 1,
           },

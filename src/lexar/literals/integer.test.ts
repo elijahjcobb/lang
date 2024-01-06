@@ -5,7 +5,7 @@ describe("integer", () => {
     expect(lexar(`42`).statements).toEqual([
       {
         type: "literal",
-        literalType: "integer",
+        literalType: "Integer",
         value: 42,
       },
     ]);
@@ -14,7 +14,7 @@ describe("integer", () => {
     expect(lexar(`-42`).statements).toEqual([
       {
         type: "literal",
-        literalType: "integer",
+        literalType: "Integer",
         value: -42,
       },
     ]);

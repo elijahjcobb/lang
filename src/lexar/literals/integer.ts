@@ -7,7 +7,7 @@ export const IntegerLexar: Lexar<IntegerLiteral> = {
   lexar: (statement: string) => {
     return {
       type: "literal",
-      literalType: "integer",
+      literalType: "Integer",
       value: parseInt(statement),
     };
   },
