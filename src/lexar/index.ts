@@ -11,13 +11,7 @@ import { FloatLexar } from "./literals/float";
 import { IntegerLexar } from "./literals/integer";
 import { RecordLexar } from "./literals/record";
 import { StringLexar } from "./literals/string";
-import type {
-  Context,
-  FunctionDeclaration,
-  Lexar,
-  LexarResult,
-  Token,
-} from "./types";
+import type { Context, Lexar, LexarResult, Token } from "./types";
 import { REGEX, VariableDeclarationLexar } from "./variables/declaration";
 import { VariableLexar } from "./variables/read";
 
@@ -105,8 +99,6 @@ export function lexar(src: string, c?: Context): LexarResult {
     .filter((t): t is Token => t !== null);
 
   statements.push(...rawStatements);
-
-  console.log(JSON.stringify({ statements, context, src }, null, 4));
 
   return { statements, context };
 }

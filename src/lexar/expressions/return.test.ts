@@ -60,7 +60,7 @@ describe("return", () => {
       },
     ]);
   });
-  it.only("works on return integer variable", () => {
+  it("works on return integer variable", () => {
     expect(
       lexar(`
     let a: Integer = 32;

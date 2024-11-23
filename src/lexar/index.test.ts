@@ -12,6 +12,7 @@ const SRC = `
 (1 + 2 + 3) + 4
 `;
 
-it("foo", () => {
-  lexar(SRC);
+it.only("foo", () => {
+  const x = lexar(SRC);
+  console.log(JSON.stringify(x));
 });
